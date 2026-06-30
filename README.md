@@ -1,6 +1,6 @@
 # 📬 MBOX Splitter
 
-A fast and efficient Python tool for splitting large .mbox email archive files into smaller chunks. Designed to prevent issues with oversized mailbox files and improve email management.  
+A fast and efficient Python tool for splitting large .mbox email archive files into smaller chunks. Designed to prevent issues with oversized mailbox files and improve email management.
 
 ## 🚀 Features
 
@@ -8,20 +8,20 @@ A fast and efficient Python tool for splitting large .mbox email archive files i
 ✅ Preserves email integrity and format  
 ✅ Real-time progress tracking with a dynamic progress bar  
 ✅ Automatically names output files sequentially (file_1.mbox, file_2.mbox, etc.)  
-✅ Works efficiently with large .mbox files  
-  
+✅ Works efficiently with large .mbox files
+
 ## 📌 Requirements
 
 Make sure you have Python 3.x installed. Additionally, install the required dependencies:
 
-``pip install tqdm``  
+`pip install tqdm`
 
 ## 📥 Installation
 
 Clone the repository and navigate to the project folder:
 
-``git clone https://github.com/gray-area/mbox-splitter.git
-cd mbox-splitter``  
+`git clone https://github.com/gray-area/mbox-splitter.git
+cd mbox-splitter`
 
 ## 🔧 Usage
 
@@ -29,21 +29,21 @@ Move .mbox file into MBOX Splitter folder
 
 Run the script with the following command:
 
-``python splitter.py <filename.mbox> <size_in_MB>``  
+`python splitter.py <filename.mbox> <size_in_MB>`
 
 ## 📌 Example
 
 Splitting a backup.mbox file into 50MB chunks:
 
-``python splitter.py backup.mbox 50``  
+`python splitter.py backup.mbox 50`
 
 ## 📤 Output
 
 The tool will generate new .mbox files in the same directory:
 
-``backup_1.mbox (≈ 50MB)
+`backup_1.mbox (≈ 50MB)
 backup_2.mbox (≈ 50MB)
-backup_3.mbox (remaining size)``
+backup_3.mbox (remaining size)`
 
 ## ⏳ Progress bar
 
@@ -70,20 +70,20 @@ Done.
 
 3. Writes messages into a new .mbox file until it reaches the specified size.
 
-4. Creates a new .mbox file and continues processing.  
+4. Creates a new .mbox file and continues processing.
 
 ## 🐍 Compatibility
 
 ✅ Python 3.x  
-✅ Works on Windows, macOS, and Linux  
+✅ Works on Windows, macOS, and Linux
 
 ## 🏆 Contributing
 
-Feel free to fork this repo and submit a pull request! Any contributions, suggestions, or improvements are welcome.  
+Feel free to fork this repo and submit a pull request! Any contributions, suggestions, or improvements are welcome.
 
 ## 📜 License
 
-MIT License. See LICENSE for details.  
+MIT License. See LICENSE for details.
 
 ## 📧 Contact
 
