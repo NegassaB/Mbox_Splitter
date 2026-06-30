@@ -1,5 +1,6 @@
 import os
 import sys
+from contextlib import ExitStack
 
 from tqdm import tqdm
 
@@ -36,9 +37,10 @@ current_output_name = output_template.format(chunk_count)
 current_chunk_size = 0
 message_count = 0
 
-# Open file in binary read mode ('rb'), destination in binary write mode ('wb')
-with open(filename, "rb") as infile:
-    outfile = open(current_output_name, "wb")
+# Use ExitStack to safely manage dynamic file opening
+with open(filename, "rb") as infile, ExitStack() as stack:
+    # Enter the first output file into the context stack
+    outfile = stack.enter_context(open(current_output_name, "wb"))
 
     for line in infile:
         line_len = len(line)
@@ -46,14 +48,16 @@ with open(filename, "rb") as infile:
         # Look for the standard binary signature of a new email block
         # It must start with b'From ' and we must already be over our target size
         if line.startswith(b"From ") and current_chunk_size >= split_size:
-            outfile.close()
+            # Clear previous file context (closes the old file safely)
+            stack.pop_all().close()
             print(
                 f"Created file `{current_output_name}`, size={current_chunk_size // (1024 * 1024)}MB, approx messages={message_count}."
             )
 
             chunk_count += 1
             current_output_name = output_template.format(chunk_count)
-            outfile = open(current_output_name, "wb")
+            # Safely open the next file under the context manager
+            outfile = stack.enter_context(open(current_output_name, "wb"))
             current_chunk_size = 0
             message_count = 0
 
@@ -64,9 +68,9 @@ with open(filename, "rb") as infile:
         current_chunk_size += line_len
         pbar.update(line_len)
 
-    outfile.close()
     pbar.close()
 
+# The last file block automatically closes when exiting the `with` block above
 print(
     f"Created file `{current_output_name}`, size={current_chunk_size // (1024 * 1024)}MB, approx messages={message_count}."
 )
