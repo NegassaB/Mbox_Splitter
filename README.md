@@ -47,7 +47,7 @@ backup_3.mbox (remaining size)`
 
 ## ⏳ Progress bar
 
-For example if the input is an 11GB mbox and the outputs where a chuck of 1024 MB = 1GB.
+For example if the input mbox file is 11GB and the output chucks are of 1024 MB = 1GB.
 
 ```text
 Splitting `backup.mbox` into chunks of 1024 MB...
